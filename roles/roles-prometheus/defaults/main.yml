@@ -14,3 +14,5 @@ prometheus_web_listen_address: "0.0.0.0:9090"
 prometheus_web_external_url: ''
 
 prometheus_config_flags_extra: {}
+
+prometheus_config_file: 'prometheus.yml.j2'
