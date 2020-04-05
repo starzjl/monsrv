@@ -1,0 +1,4 @@
+- name: Deploy core monitoring software Prometheus
+  hosts: prometheus
+  roles:
+  - roles/roles-prometheus
