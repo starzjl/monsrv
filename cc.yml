@@ -1,0 +1,9 @@
+- name: Default Filter Sequence
+  hosts: prometheus
+  gather_facts: true
+  tasks:
+  - set_fact:
+      prometheus_external_labels:
+        environment: "{{ ansible_fqdn | default(ansible_host) | default(inventory_hostname) }}"
+  - debug:
+      msg: "{{ prometheus_external_labels }}"
