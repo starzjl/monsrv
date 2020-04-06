@@ -2,3 +2,4 @@
   hosts: prometheus
   roles:
   - roles/roles-prometheus
+  - roles/roles-alertmanager
