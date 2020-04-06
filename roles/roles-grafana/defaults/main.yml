@@ -1,1 +1,2 @@
+grafana_version: latest
 grafana_yum_repo_template: etc/yum.repos.d/grafana.repo.j2
