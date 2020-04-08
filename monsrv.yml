@@ -4,3 +4,4 @@
   - roles/roles-prometheus
   - roles/roles-alertmanager
   - roles/roles-grafana
+  - roles/roles-node-exporter

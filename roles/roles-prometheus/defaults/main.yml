@@ -1,4 +1,5 @@
 prometheus_db_dir: /var/lib/prometheus
+
 prometheus_config_dir: /etc/prometheus
 
 prometheus_version: 2.17.1
@@ -16,28 +17,3 @@ prometheus_web_external_url: ''
 prometheus_config_flags_extra: {}
 
 prometheus_config_file: 'prometheus.yml.j2'
-
-prometheus_global:
-  scrape_interval: 15s
-  scrape_timeout: 10s
-  evaluation_interval: 15s
-
-prometheus_external_labels:
-  environment: "{{ ansible_fqdn | default(ansible_host) | default(inventory_hostname) }}"
-
-prometheus_remote_write: []
-
-prometheus_remote_read: []
-
-prometheus_alertmanager_config: []
-
-prometheus_scrape_configs:
-  - job_name: "prometheus"
-    metrics_path: "{{ prometheus_metrics_path }}"
-    static_configs:
-      - targets:
-          - "{{ ansible_fqdn | default(ansible_host) | default('localhost') }}:9090"
-  - job_name: "node"
-    file_sd_configs:
-      - files:
-          - "{{ prometheus_config_dir }}/file_sd/node.yml"
