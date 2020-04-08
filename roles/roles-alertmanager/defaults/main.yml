@@ -3,11 +3,6 @@ alertmanager_db_dir: /var/lib/alertmanager
 alertmanager_version: 0.20.0
 alertmanager_binary_local_dir: /zto/alertmanager-0.20.0.linux-amd64
 alertmanager_config_file: 'alertmanager.yml.j2'
-alertmanager_resolve_timeout: 3m
-alertmanager_smtp: {}
-alertmanager_receivers: []
-alertmanager_inhibit_rules: []
-alertmanager_route: {}
 alertmanager_web_listen_address: '0.0.0.0:9093'
 alertmanager_web_external_url: 'http://localhost:9093/'
 alertmanager_config_flags_extra: {}
