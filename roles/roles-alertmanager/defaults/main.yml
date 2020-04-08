@@ -1,7 +1,7 @@
 alertmanager_config_dir: /etc/alertmanager
 alertmanager_db_dir: /var/lib/alertmanager
 alertmanager_version: 0.20.0
-alertmanager_binary_local_dir: ''
+alertmanager_binary_local_dir: /zto/alertmanager-0.20.0.linux-amd64
 alertmanager_config_file: 'alertmanager.yml.j2'
 alertmanager_resolve_timeout: 3m
 alertmanager_smtp: {}
