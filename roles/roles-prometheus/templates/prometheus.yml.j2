@@ -1,24 +1,29 @@
-global:
-  scrape_interval: 15s
-  scrape_timeout: 10s
-  evaluation_interval: 15s
+# 全局配置
+global:                     
+  scrape_interval: 15s      # 默认抓取周期 
+  scrape_timeout: 10s       # 每次抓取超时时间
+  evaluation_interval: 15s  # 多久评估一次规则
 
-rule_files:
+# 告警规则文件列表
+rule_files: 
   - {{ prometheus_config_dir }}/rules/*.rules
 
+# Alertmanager相关配置
 alerting:
   alertmanagers:
   - static_configs:
     - targets:
       - localhost:9093
 
+# 抓取数据配置项
 scrape_configs:
   - job_name: "prometheus"
-    static_configs:
+    static_configs:            # 静态配置模式
     - targets:
       - localhost:9090
 
   - job_name: "node"
-    file_sd_configs:
+    file_sd_configs:           # 基于文件动态加载，自动发现
     - files:
       - "{{ prometheus_config_dir }}/file_sd/node.yml"
+      refresh_interval: 10s    # 文件扫描时间间隔

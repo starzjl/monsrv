@@ -1,22 +1,28 @@
+# 全局配置项
 global:
-  resolve_timeout: 3m
-  smtp_smarthost: ''
+  resolve_timeout: 5m    # 参数定义了当Alertmanager持续多长时间未接收到告警后标记告警状态为resolved
+  smtp_smarthost: ''     # 邮箱smtp服务器代理
   smtp_from: ''
   smtp_auth_username: ''
   smtp_auth_password: ''
 
-route:
-  group_by: ['alertname']
-  group_wait: 10s
-  group_interval: 10s
-  repeat_interval: 1h
+# 用于定义告警通知时的模板，如HTML模板，邮件模板等
+templates:
+- '{{ alertmanager_config_dir }}/templates/*.tmpl'
+
+# 告警路由
+route:  
+  group_by: ['alertname']  # 告警分组
+  group_wait: 10s          # 第一次的告警信息在间隔多长时间后发送给receiver
+  group_interval: 10s      # 发送告警通知的时间间隔
+  repeat_interval: 1h      # 告警的再次发送频率
   receiver: 'web.hook'
 
+# 定义告警接收人
 receivers:
 - name: 'web.hook'
   webhook_configs:
   - url: 'http://127.0.0.1:5001/'
 
 inhibit_rules:
-templates:
-- '{{ alertmanager_config_dir }}/templates/*.tmpl'
+
