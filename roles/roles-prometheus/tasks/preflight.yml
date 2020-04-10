@@ -13,7 +13,3 @@
 - name: Set systemd version fact
   set_fact:
     prometheus_systemd_version: "{{ __systemd_version.stdout_lines[0].split(' ')[-1] }}"
-
-- name: Set prometheus external metrics path
-  set_fact:
-    prometheus_metrics_path: "/{{ ( prometheus_web_external_url + '/metrics' ) | regex_replace('^(.*://)?(.*?)/') }}"
