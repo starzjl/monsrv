@@ -1,19 +1,14 @@
 - name: Add Grafana repository file [RHEL/CentOS]
   template:
-    src: "{{ grafana_yum_repo_template }}"
+    src: grafana.repo.j2
     dest: "/etc/yum.repos.d/grafana.repo"
     force: true
     backup: true
-  when: ansible_pkg_mgr in ['yum', 'dnf']
-
-- name: redhat/centos_grafana_package
-  set_fact:
-    grafana_package: "grafana{{ (grafana_version != 'latest') | ternary('-' ~ grafana_version, '') }}"
 
 - name: Install Grafana
-  package:
-    name: "{{ grafana_package }}"
-    state: "{{ (grafana_version == 'latest') | ternary('latest', 'present') }}"
+  yum:
+    name: grafana
+    state: latest
   register: _install_packages
   until: _install_packages is succeeded
   retries: 5

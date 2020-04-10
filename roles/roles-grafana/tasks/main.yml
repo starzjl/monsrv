@@ -12,11 +12,5 @@
 
 - name: Wait for grafana to start (http/s)
   wait_for:
-    host: "{{ grafana_address }}"
-    port: "{{ grafana_port }}"
-  when: grafana_server.protocol is undefined or grafana_server.protocol in ['http', 'https']
-
-- name: Wait for grafana to start (socket)
-  wait_for:
-    path: "{{ grafana_server.socket }}"
-  when: grafana_server.protocol is defined and grafana_server.protocol == 'socket'
+    host: 0.0.0.0
+    port: 3000
