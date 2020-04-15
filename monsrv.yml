@@ -1,7 +1,11 @@
 - name: Deploy core monitoring software Prometheus
-  hosts: prometheus
+#  hosts: prometheus
+  hosts: consul_instances
+  become: true
+  become_user: root
   roles:
-  - roles/roles-prometheus
-  - roles/roles-alertmanager
-  - roles/roles-grafana
-  - roles/roles-node-exporter
+ # - roles/roles-prometheus
+ # - roles/roles-alertmanager
+ # - roles/roles-grafana
+ # - roles/roles-node-exporter
+  - roles/ansible-consul

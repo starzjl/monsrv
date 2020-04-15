@@ -1,0 +1,23 @@
+---
+- name: Download Consul package
+  get_url:
+    url: https://releases.hashicorp.com/consul/1.7.2/consul_1.7.2_linux_amd64.zip
+    dest: /tmp
+    timeout: "42"
+  become: false
+  vars:
+    ansible_become: false
+  run_once: true
+  delegate_to: 127.0.0.1
+
+- name: Unarchive Consul package
+  unarchive:
+    src: "{{ role_path }}/files/{{ consul_pkg }}"
+    dest: "{{ install_temp.path }}/"
+    creates: "{{ install_temp.path }}/consul"
+  become: false
+  vars:
+    ansible_become: false
+  tags: installation
+  run_once: true
+  delegate_to: 127.0.0.1

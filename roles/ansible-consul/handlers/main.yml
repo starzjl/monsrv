@@ -1,0 +1,5 @@
+---
+# File: main.yml - Handlers for Consul
+
+- name: restart consul
+  import_tasks: restart_consul.yml
